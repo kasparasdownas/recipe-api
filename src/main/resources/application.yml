@@ -1,0 +1,37 @@
+# src/main/resources/application.yml
+spring:
+  application:
+    name: recipe-api
+
+  datasource:
+    url: jdbc:h2:mem:recipes;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE
+    username: SA
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.format_sql: true
+    # ensure Hibernate creates tables before running data.sql
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always  # run data.sql on startup
+
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
+server:
+  port: 8080
+
+# Swagger/OpenAPI
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
